@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+// Force rebuild for Vercel
 
 export function Particles() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
