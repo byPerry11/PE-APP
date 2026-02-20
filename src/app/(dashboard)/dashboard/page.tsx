@@ -1,65 +1,112 @@
-"use client";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Activity, Zap, Wind, Package, ArrowUpRight, ArrowDownRight } from "lucide-react";
 
-import { Search, Plus } from "lucide-react";
-import { WorkoutResultsCard } from "@/components/dashboard/WorkoutResultsCard";
-import { CalendarWidget } from "@/components/dashboard/CalendarWidget";
-import { HabitsList } from "@/components/dashboard/HabitsList";
-import { StepsWidget } from "@/components/dashboard/StepsWidget";
-import { cn } from "@/lib/utils";
+const stats = [
+    {
+        title: "Torque Hoy",
+        value: "124",
+        description: "Mediciones realizadas",
+        icon: Activity,
+        trend: "up",
+        trendValue: "+12%"
+    },
+    {
+        title: "ESD Status",
+        value: "100%",
+        description: "Estaciones conformes",
+        icon: Zap,
+        trend: "neutral",
+        trendValue: "0%"
+    },
+    {
+        title: "Ionizadores",
+        value: "2",
+        description: "Mantenimientos hoy",
+        icon: Wind,
+        trend: "down",
+        trendValue: "-1"
+    },
+    {
+        title: "Stock Crítico",
+        value: "5",
+        description: "Productos bajo umbral",
+        icon: Package,
+        trend: "urgent",
+        trendValue: "Requiere atención"
+    }
+];
 
-export default function Home() {
+export default function HomePage() {
     return (
-        <div className="space-y-6 max-w-[1400px] mx-auto p-4 md:p-6 lg:p-8">
-            {/* Header */}
-            <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
-                <div>
-                    <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">Hi, Amanda!</h1>
-                    <p className="text-gray-500 mt-2 text-lg">Let's take a look at your activity today</p>
-                </div>
+        <div className="flex-1 space-y-12 p-8 pt-6">
+            <div className="flex flex-col space-y-2">
+                <h2 className="text-4xl font-black tracking-tighter uppercase">Overview General</h2>
+                <p className="text-gray-500 font-medium">Estado actual de la planta de ingeniería de procesos.</p>
+            </div>
 
-                <div className="flex items-center gap-4 self-start md:self-auto">
-                    <div className="relative group">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-dark-900 transition-colors" />
-                        <input
-                            type="text"
-                            placeholder="Search for health data"
-                            className="pl-12 pr-6 py-3 bg-white rounded-full border-2 border-white focus:border-gray-200 shadow-sm focus:outline-none focus:ring-0 text-gray-900 placeholder:text-gray-400 w-64 md:w-80 transition-all font-medium"
-                        />
-                    </div>
-                    <button className="bg-dark-900 text-white px-8 py-3 rounded-full text-sm font-semibold hover:bg-black transition-all hover:scale-105 shadow-md shadow-dark-900/20">
-                        Upgrade
-                    </button>
-                </div>
-            </header>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                {stats.map((stat, idx) => (
+                    <Card key={idx} className="border-2 border-black hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all cursor-default">
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-xs font-black uppercase tracking-widest text-gray-500">
+                                {stat.title}
+                            </CardTitle>
+                            <stat.icon className="h-4 w-4 text-black" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-3xl font-black">{stat.value}</div>
+                            <div className="flex items-center pt-1">
+                                {stat.trend === "up" && <ArrowUpRight className="h-3 w-3 text-green-600 mr-1" />}
+                                {stat.trend === "down" && <ArrowDownRight className="h-3 w-3 text-red-600 mr-1" />}
+                                <p className={`text-[10px] font-bold uppercase tracking-tighter ${stat.trend === "urgent" ? "text-red-600 animate-pulse" : "text-gray-400"
+                                    }`}>
+                                    {stat.trendValue} {stat.description}
+                                </p>
+                            </div>
+                        </CardContent>
+                    </Card>
+                ))}
+            </div>
 
-            {/* Grid Layout */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto">
-                {/* Workout Card - Large (Span 7) */}
-                <div className="col-span-12 lg:col-span-7 h-[360px]">
-                    <WorkoutResultsCard />
-                </div>
+            <div className="grid gap-6 md:grid-cols-2">
+                <Card className="border-2 border-black">
+                    <CardHeader>
+                        <CardTitle className="text-sm font-black uppercase tracking-[0.2em]">Actividad Reciente</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        {[1, 2, 3].map((i) => (
+                            <div key={i} className="flex items-center justify-between border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                                <div className="space-y-1">
+                                    <p className="text-sm font-black leading-none">Registro de Torque - HERR-092</p>
+                                    <p className="text-xs text-gray-500 uppercase tracking-tighter">Hace 15 minutos • Operador: J. Pérez</p>
+                                </div>
+                                <div className="px-2 py-1 bg-black text-white text-[10px] font-bold rounded">PASS</div>
+                            </div>
+                        ))}
+                    </CardContent>
+                </Card>
 
-                {/* Calendar Widget - Dark (Span 5) */}
-                <div className="col-span-12 lg:col-span-5 h-[360px]">
-                    <CalendarWidget />
-                </div>
-
-                {/* Steps Widget - White (Span 4) */}
-                <div className="col-span-12 md:col-span-6 lg:col-span-4 bg-white rounded-[40px] p-8 shadow-sm min-h-[300px]">
-                    <StepsWidget />
-                </div>
-
-                {/* Habits List - White (Span 8) */}
-                <div className="col-span-12 md:col-span-6 lg:col-span-8 bg-white rounded-[40px] p-8 shadow-sm min-h-[300px]">
-                    <div className="flex items-center justify-between mb-6">
-                        <h3 className="font-semibold text-gray-900 text-lg">My Habits</h3>
-                        <button className="text-xs font-bold flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-3 py-1.5 rounded-full transition-colors">
-                            Add New
-                            <div className="bg-black text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px]"><Plus className="w-3 h-3" /></div>
-                        </button>
-                    </div>
-                    <HabitsList />
-                </div>
+                <Card className="border-2 border-black bg-black text-white">
+                    <CardHeader>
+                        <CardTitle className="text-sm font-black uppercase tracking-[0.2em] text-gray-400">Alertas del Sistema</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <div className="flex items-start gap-4">
+                            <div className="w-2 h-2 mt-1.5 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
+                            <div>
+                                <p className="text-sm font-bold uppercase tracking-tighter">Stock Crítico: Alcohol Isopropílico</p>
+                                <p className="text-xs text-gray-500">Nivel actual: 5L. Umbral mínimo: 15L.</p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-4">
+                            <div className="w-2 h-2 mt-1.5 rounded-full bg-yellow-500" />
+                            <div>
+                                <p className="text-sm font-bold uppercase tracking-tighter">Mantenimiento Pendiente: ST-ION-12</p>
+                                <p className="text-xs text-gray-500">Vencimiento: 25 de Febrero.</p>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
             </div>
         </div>
     );

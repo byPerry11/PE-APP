@@ -11,41 +11,43 @@ export default function LandingPage() {
             {/* Header */}
             <header className="absolute top-0 w-full z-50 p-6 flex justify-between items-center">
                 <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-black text-white rounded-lg flex items-center justify-center font-bold text-xs">
+                    <div className="w-10 h-10 bg-black text-white rounded-xl flex items-center justify-center font-bold text-lg">
                         PE
                     </div>
-                    <span className="font-semibold text-gray-900 tracking-tight">System</span>
+                    <span className="font-black text-black uppercase tracking-widest text-sm">System</span>
                 </div>
                 <div className="flex items-center gap-4">
                     <Link href="/login">
-                        <Button variant="ghost" className="text-gray-600 hover:text-gray-900 hover:bg-gray-50">Log In</Button>
+                        <Button variant="ghost" className="text-xs font-black uppercase tracking-widest hover:bg-gray-50">Log In</Button>
                     </Link>
-                    <Link href="/signup">
-                        <Button className="bg-black text-white hover:bg-gray-800 rounded-full px-6">Sign Up</Button>
+                    <Link href="/login">
+                        <Button className="bg-black text-white hover:bg-gray-800 rounded-none px-8 py-2 text-xs font-black uppercase tracking-widest">Comenzar</Button>
                     </Link>
                 </div>
+
             </header>
 
             {/* Main Content */}
             <main className="flex-1 flex flex-col items-center justify-center text-center z-10 px-4">
                 <div className="max-w-4xl space-y-6">
-                    <h1 className="text-5xl md:text-7xl font-bold text-gray-900 tracking-tight leading-tight">
+                    <h1 className="text-5xl md:text-7xl font-black text-gray-900 tracking-tight leading-tight uppercase">
                         Process Engineering <br />
-                        <span className="text-green-500">System</span>
+                        <span className="text-gray-400">System</span>
                     </h1>
-                    <p className="text-xl text-gray-500 max-w-2xl mx-auto">
-                        Streamline your production workflow with advanced real-time monitoring and data analytics.
+                    <p className="text-xl text-gray-500 max-w-2xl mx-auto font-medium">
+                        Optimización de procesos de ingeniería mediante monitoreo en tiempo real y trazabilidad total.
                     </p>
                     <div className="flex justify-center gap-4 pt-8">
                         <Link href="/dashboard">
-                            <Button size="lg" className="rounded-full text-base px-8 py-6 h-auto bg-black hover:bg-gray-800 shadow-lg shadow-green-500/20 border-2 border-transparent hover:border-green-500/50 transition-all">
-                                Get Started
+                            <Button size="lg" className="rounded-none text-xs uppercase tracking-[0.2em] font-black px-12 py-8 h-auto bg-black hover:bg-gray-800 shadow-[8px_8px_0px_0px_rgba(200,200,200,1)] transition-all">
+                                Comenzar
                             </Button>
                         </Link>
-                        <Button variant="outline" size="lg" className="rounded-full text-base px-8 py-6 h-auto border-gray-200 hover:bg-gray-50 text-gray-600">
-                            Learn More
+                        <Button variant="outline" size="lg" className="rounded-none text-xs uppercase tracking-[0.2em] font-black px-12 py-8 h-auto border-2 border-black hover:bg-gray-50">
+                            Más Información
                         </Button>
                     </div>
+
                 </div>
             </main>
 
