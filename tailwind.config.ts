@@ -9,8 +9,41 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                background: "var(--background)",
-                foreground: "var(--foreground)",
+                border: "hsl(var(--border))",
+                input: "hsl(var(--input))",
+                ring: "hsl(var(--ring))",
+                background: "hsl(var(--background))",
+                foreground: "hsl(var(--foreground))",
+                primary: {
+                    DEFAULT: "hsl(var(--primary))",
+                    foreground: "hsl(var(--primary-foreground))",
+                },
+                secondary: {
+                    DEFAULT: "hsl(var(--secondary))",
+                    foreground: "hsl(var(--secondary-foreground))",
+                },
+                destructive: {
+                    DEFAULT: "hsl(var(--destructive))",
+                    foreground: "hsl(var(--destructive-foreground))",
+                },
+                muted: {
+                    DEFAULT: "hsl(var(--muted))",
+                    foreground: "hsl(var(--muted-foreground))",
+                },
+                accent: {
+                    DEFAULT: "hsl(var(--accent))",
+                    foreground: "hsl(var(--accent-foreground))",
+                    yellow: "#FFD76D",
+                    coral: "#FF8A80",
+                },
+                popover: {
+                    DEFAULT: "hsl(var(--popover))",
+                    foreground: "hsl(var(--popover-foreground))",
+                },
+                card: {
+                    DEFAULT: "hsl(var(--card))",
+                    foreground: "hsl(var(--card-foreground))",
+                },
                 // Custom Dashboard Colors
                 beige: {
                     50: "#FDFCF7",
@@ -22,11 +55,8 @@ const config: Config = {
                     900: "#1C1C1E",
                     800: "#2C2C2E",
                 },
-                accent: {
-                    yellow: "#FQD76D", // Check if this hex is valid, FQ is not valid. Assuming FFD76D or similar.
-                    coral: "#FF8A80",
-                }
             },
+
             borderRadius: {
                 "3xl": "1.5rem", // 24px
                 "4xl": "2rem",   // 32px
